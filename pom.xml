@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  
+  $Id$
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apache.rave</groupId>
+        <artifactId>rave-master</artifactId>
+        <version>0.1-incubating</version>
+        <relativePath>../rave-master-pom/pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.apache.rave</groupId>
+    <artifactId>rave-project</artifactId>
+    <name>Apache Rave :: rave-project</name>
+    <description>Apache Rave Project</description>
+    <packaging>pom</packaging>
+    <version>0.1-incubating</version>
+
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/incubator/rave/tags/0.1-incubating</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/rave/tags/0.1-incubating</developerConnection>
+        <url>http://svn.apache.org/viewvc/incubator/rave/tags/0.1-incubating</url>
+    </scm>
+
+    <properties>
+        <apache.shindig.version>3.0.0-beta2</apache.shindig.version>
+        <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
+        <jstl.version>1.2</jstl.version>
+        <javax.servlet.version>2.5</javax.servlet.version>
+        <jsp-api.version>2.1</jsp-api.version>
+        <el-api.version>1.0</el-api.version>
+        <org.slf4j.version>1.6.1</org.slf4j.version>
+        <log4j.version>1.2.16</log4j.version>
+        <junit.version>4.7</junit.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <icu4j.version>4.6.1</icu4j.version>
+        <easymock.version>3.0</easymock.version>
+        <openjpa.version>2.1.0</openjpa.version>
+        <org.openid4java.version>0.9.6</org.openid4java.version>
+        <jersey-server.version>1.6</jersey-server.version>
+        <jersey-spring.version>1.0</jersey-spring.version>
+        
+        <!-- Force maven-filesync-plugin rewrite the Eclipse FileSync plugin configuration with
+            $mvn filesync:generate -Dmaven.filesync.override=true -->
+        <maven.filesync.override>false</maven.filesync.override>
+    </properties>
+
+  <repositories>
+    <repository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>http://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+    <!-- Global management of all dependencies -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.shindig</groupId>
+                <artifactId>shindig-server</artifactId>
+                <version>${apache.shindig.version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shindig</groupId>
+                <artifactId>shindig-social-api</artifactId>
+                <version>${apache.shindig.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.shindig</groupId>
+              <artifactId>shindig-social-api</artifactId>
+              <type>test-jar</type>
+              <scope>test</scope>
+              <version>${apache.shindig.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.shindig</groupId>
+              <artifactId>shindig-common</artifactId>
+              <type>test-jar</type>
+              <scope>test</scope>
+              <version>${apache.shindig.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.shindig</groupId>
+              <artifactId>shindig-gadgets</artifactId>
+              <scope>test</scope>
+              <version>${apache.shindig.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.glassfish.web</groupId>
+              <artifactId>jstl-impl</artifactId>
+              <version>${jstl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa</artifactId>
+                <version>${openjpa.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-spring</artifactId>
+                <version>${jersey-spring.version}</version>
+                <exclusions>
+                  <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                  </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>${jersey-server.version}</version>
+            </dependency>
+  
+            <!-- Logging -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${org.slf4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${org.slf4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- Language and localization -->
+            <dependency>
+                <groupId>com.ibm.icu</groupId>
+                <artifactId>icu4j</artifactId>
+                <version>${icu4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+            <!-- Rave artifacts -->
+            <dependency>
+                <groupId>org.apache.rave</groupId>
+                <artifactId>rave-shindig</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rave</groupId>
+                <artifactId>rave-portal</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+            </dependency>
+
+            <!-- Test -->
+            <dependency>
+               <groupId>junit</groupId>
+               <artifactId>junit</artifactId>
+               <version>${junit.version}</version>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.easymock</groupId>
+               <artifactId>easymock</artifactId>
+               <version>${easymock.version}</version>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-test</artifactId>
+               <version>${org.springframework.version}</version>
+               <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Global dependencies (provided or test scope only) -->
+    <dependencies>
+        <!-- Servlet spec -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>javax.servlet.jsp</groupId>
+          <artifactId>jsp-api</artifactId>
+          <version>${jsp-api.version}</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>javax.el</groupId>
+          <artifactId>el-api</artifactId>
+          <version>${el-api.version}</version>
+          <scope>provided</scope>
+        </dependency>
+                
+        <!-- Exclude commons-logging by adding it as a provided dependency -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>[1,)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>${easymock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency> -->
+    </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>com.googlecode.mavenfilesync</groupId>
+          <artifactId>maven-filesync-plugin</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <override>${maven.filesync.override}</override>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+    <modules>
+        <module>rave-shindig</module>
+        <module>rave-portal</module>
+    </modules>
+
+    <profiles>
+      <profile>
+        <id>dist</id>
+        <build>
+          <defaultGoal>install</defaultGoal>
+          <plugins>
+            <plugin>
+              <artifactId>maven-clean-plugin</artifactId>
+              <executions>
+                <execution>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>clean</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+    </profiles>
+    
+</project>
