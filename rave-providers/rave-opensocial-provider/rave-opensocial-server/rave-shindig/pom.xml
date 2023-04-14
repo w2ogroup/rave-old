@@ -35,7 +35,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <shindig.json.version>20070829</shindig.json.version>
+        <shindig.json.version>20230227</shindig.json.version>
     </properties>
 
     <dependencies>

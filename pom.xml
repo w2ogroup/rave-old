@@ -67,7 +67,7 @@
         <jersey-server.version>1.16</jersey-server.version>
         <jersey-spring.version>1.16</jersey-spring.version>
         <jackson.version>1.9.11</jackson.version>
-        <json.version>20090211</json.version>
+        <json.version>20230227</json.version>
         <guice.version>3.0</guice.version>
         <httpclient.version>4.2.2</httpclient.version>
         <httpcore.version>4.2.3</httpcore.version>
